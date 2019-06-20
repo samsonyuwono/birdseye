@@ -6,20 +6,23 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isEmptyState: true };
+    this.state = { loginPage: true, dashboard: false };
   }
 
-  triggerAddTripState = () => {
+  redirectPage = () => {
     this.setState({
       ...this.state,
-      isEmptyState: false,
-      isAddTripState: true
+      loginPage: false,
+      dashboard: true
     });
   };
   render() {
     return (
       <div>
-        <Dashboard />
+        {this.state.loginPage && (
+          <LoginPage openDashboard={this.redirectPage} />
+        )}
+        {this.state.dashboard && <Dashboard />}
       </div>
     );
   }

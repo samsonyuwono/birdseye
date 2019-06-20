@@ -23,7 +23,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "flex-start"
+  },
+  header: {
+    marginLeft: "55px"
   },
   avatar: {
     margin: "20px auto 35px 55px",
@@ -69,7 +72,7 @@ function LoginPage(props) {
       <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar} />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" className={classes.header}>
             Welcome To Birdseye!
           </Typography>
           <form className={classes.form} noValidate>
@@ -105,6 +108,7 @@ function LoginPage(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={props.openDashboard}
             >
               Sign In
             </Button>
@@ -113,9 +117,7 @@ function LoginPage(props) {
               fullWidth
               variant="outlined"
               color="inherit"
-              borderRadius="0px"
               className={classes.createAnAccount}
-              onClick={props.addTrip}
             >
               Create An Account
             </Button>
