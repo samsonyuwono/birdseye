@@ -26,12 +26,13 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: "20px auto 35px 55px",
     backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(7)
+    marginTop: theme.spacing(1),
+    padding: "55px"
   },
   textField: {
     marginTop: "4px",
@@ -39,7 +40,13 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     backgroundColor: "#000",
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(0, 0, 2),
+    fontSize: "0.5rem",
+    borderRadius: "0"
+  },
+  createAnAccount: {
+    fontSize: "0.5rem",
+    borderRadius: "0"
   },
   forgotPassword: {
     marginTop: "20px",
@@ -52,14 +59,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LoginPage() {
+function LoginPage(props) {
   const classes = useStyles();
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
 
-      <Grid item xs={12} sm={5} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={7} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar} />
           <Typography component="h1" variant="h5">
@@ -106,7 +113,9 @@ function LoginPage() {
               fullWidth
               variant="outlined"
               color="inherit"
+              borderRadius="0px"
               className={classes.createAnAccount}
+              onClick={props.addTrip}
             >
               Create An Account
             </Button>
@@ -120,7 +129,7 @@ function LoginPage() {
           </form>
         </div>
       </Grid>
-      <Grid item xs={false} sm={7} md={7} className={classes.image} />
+      <Grid item xs={false} sm={5} md={7} className={classes.image} />
     </Grid>
   );
 }
