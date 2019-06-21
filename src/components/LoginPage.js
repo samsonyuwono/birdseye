@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "flex-start"
   },
   header: {
-    marginLeft: "55px"
+    marginLeft: theme.spacing(7)
   },
   avatar: {
     margin: "20px auto 35px 55px",
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    padding: "55px"
+    padding: theme.spacing(7)
   },
   textField: {
     marginTop: "4px",
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "0"
   },
   forgotPassword: {
-    marginTop: "20px",
+    marginTop: theme.spacing(2.5),
     textTransform: "uppercase",
     textAlign: "center"
   },

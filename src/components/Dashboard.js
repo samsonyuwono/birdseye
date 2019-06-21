@@ -1,25 +1,24 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import SearchIcon from "@material-ui/icons/Search";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
+import { outstandingTaskItems } from "./listItems";
+import Typography from "@material-ui/core/Typography";
+import Today from "./Today";
 
 const drawerWidth = 240;
 
@@ -28,7 +27,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: 24
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main
   },
   toolbarIcon: {
     display: "flex",
@@ -81,11 +83,43 @@ const useStyles = makeStyles(theme => ({
       width: theme.spacing(9)
     }
   },
+  search: {
+    position: "relative",
+    borderRadius: "0",
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "5%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "50%"
+    }
+  },
+  header: {
+    margin: theme.spacing(3),
+    fontWeight: "bold"
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  sectionDesktop: {
+    marginLeft: "auto"
+  },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     height: "100vh",
-    overflow: "auto"
+    overflow: "auto",
+    backgroundColor: "#dadada"
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -104,14 +138,7 @@ const useStyles = makeStyles(theme => ({
 
 function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const [open] = React.useState(true);
 
   return (
     <div className={classes.root}>
@@ -121,32 +148,37 @@ function Dashboard() {
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Avatar className={classes.avatar} />
+
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ "aria-label": "Search" }}
+            />
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            10 Days Left
+            <IconButton aria-label="Show 17 new notifications" color="inherit">
+              <Badge badgeContent={17} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="Account of current user"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -156,30 +188,24 @@ function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
+        <Typography
+          component="h2"
+          variant="h6"
+          color="primary"
+          className={classes.header}
+        >
+          Tasks
+        </Typography>
+        <List>{outstandingTaskItems}</List>
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <Today />
               </Paper>
             </Grid>
           </Grid>

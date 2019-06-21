@@ -2,69 +2,73 @@ import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
 
-export const mainListItems = (
+export const outstandingTaskItems = (
   <div>
+    <Typography component="h2" variant="h5" />
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Scripts" />
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+    </ListItem>
+    <ListItem>
+      <Checkbox />
+      <ListItemText primary="Scripts" />
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
     </ListItem>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Scripts" />
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
     </ListItem>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Scripts" />
       <ListItemIcon>
-        <PeopleIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
     </ListItem>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Scripts" />
       <ListItemIcon>
-        <BarChartIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
     </ListItem>
   </div>
 );
 
-export const secondaryListItems = (
+export const todayTaskItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Fix UX Issues" />
       <ListItemIcon>
-        <AssignmentIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
     </ListItem>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Fix UX Issues" />
       <ListItemIcon>
-        <AssignmentIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
     </ListItem>
     <ListItem button>
+      <Checkbox />
+      <ListItemText primary="Fix UX Issues" />
       <ListItemIcon>
-        <AssignmentIcon />
+        <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
     </ListItem>
   </div>
 );
